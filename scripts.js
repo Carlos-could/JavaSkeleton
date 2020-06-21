@@ -9,7 +9,10 @@ var sumar = (a,b) => a+b
 suma.innerHTML += sumar(5,7)
 
 var resta = document.getElementById('resta')
-var restar = (a,b) => a-b
+var restar = (a,b) => {
+  var c = 1;
+  return a-b-c
+}
 resta.innerHTML += restar(10,6)
 
 var multiplicacion = document.getElementById('multiplicacion')
@@ -58,4 +61,30 @@ for (var indice of arrayObjetos){
     console.log(indice.nombre);
 }
 
-// ------------> Fetch API
+// ------------> Fetch API (archivo externo texto.txt)
+// var boton = document.querySelector('#boton') //funciona sin coger la variable
+// var contenido = document.querySelector('#contenido')
+function traer() {
+  // contenido.innerHTML = `perro maldito`
+  fetch('texto.txt')
+    .then (data => data.text())
+    .then (data => {
+            contenido_1.innerHTML += data
+            contenido_2.innerHTML += `${data}`
+    })
+}
+boton.addEventListener("click", traer)
+
+// ------------> Fetch con API Publica
+function traer() {
+  fetch('https://randomuser.me/api')
+    .then (pepe => pepe.json())
+    .then (data => {
+      console.log(data.results[0]);
+      contenido.innerHTML = `
+      <img src="${data.results[0].picture.medium}" style="border-radius:50%"/>
+      <h6>Nombre: ${data.results[0].name.first}</h6>
+      `
+    })
+}
+boton.addEventListener("click", traer)
