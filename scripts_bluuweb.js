@@ -88,3 +88,50 @@ function traer() {
     })
 }
 boton.addEventListener("click", traer)
+
+// ------------> Fetch con API Publica - Tabla
+<div>
+  <table class="u-full-width" >
+    <thead >
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Nombre</th>
+        <th scope="col">Email</th>
+        <th scope="col">Estado</th>
+      </tr>
+    </thead>
+
+    <tbody id="contenido">
+
+    </tbody>
+  </table>
+</div>
+
+
+<script>
+  function pinchame() {
+    fetch('tabla.json')
+      .then ( res => res.json() )
+      .then ( datos => {
+        // console.log(datos);
+        tabla(datos)
+      } )
+    }
+
+  function tabla (datos){
+    // console.log(datos);
+    contenido.innerHTML = ''
+    for(let valor of datos){
+      // console.log(valor.nombre);
+      contenido.innerHTML += `
+      <tr>
+        <td scope="row">${valor.id}</td>
+        <td>${valor.nombre}</td>
+        <td>${valor.email}</td>
+        <td>${valor.estado ? "Activo" : "Eliminado"}</td>
+      </tr>
+    `
+    }
+  }
+  boton.addEventListener('click',pinchame)
+</script>
