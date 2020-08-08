@@ -33,14 +33,14 @@ musica.pausar();
 musica.borrar = function(id){
   console.log('Borrando la cancion con ID: ' + id);
 }
-musica.borrar(125)
+musica.borrar(124)
 
 
 const css = {}
 css.color = function(h, color){
   document.querySelector(h).style.color = color
 }
-css.color('h1','dimgray')
+css.color('h1','gray')
 css.color('h2','silver')
 css.color('h3','salmon')
 css.color('h4','peru')
@@ -49,4 +49,4 @@ css.size = function(h, size){
   document.querySelector(h).style.fontSize = size
 }
 
-css.size('h4',"10rem")
+css.size('h4',"4rem")
