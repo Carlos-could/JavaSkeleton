@@ -1,48 +1,83 @@
-class Cancion {
-     constructor(){
-          this.añadir = function(nombre){
-               const box_body = document.querySelector("#box");
-               const contenido = `
-                               <div style=    'float:left;
-                                              width: calc(33.3% - 1rem);
-                                              height: 20vh;
-                                             min-width: 20rem;
-                                              background-color: red;
-                                              border: 1px solid white'>
+// ......................... Fetch
 
-                                    <h4 style="color:white"> ${nombre} <h4>
-                               </div>
-                               `
-                          box_body.innerHTML += contenido
-          }
-     }
+function descargarUsuarios() {
+     const api = `https://pixabay.com/api/?key=18166422-c39881a9559fd66a7d6c00c5c&q=bikini&per_page=200&image_type=photo&pretty=true`;
+
+
+     const box_fetch = document.querySelector("#box_fetch")
+     //llamado fetch
+
+     fetch(api)
+          .then(respuesta => respuesta.json() )
+          .then(datos => {
+               console.log(datos.hits);
+
+               datos.hits.forEach(usuario => {
+                    const {id} = usuario
+               })
+               box_fetch.innerHTML = `
+               <h1>Nombre: ${id} </h1>
+               `
+               })
 }
 
-const facil = new Cancion()
-const medio = new Cancion()
-const dificil = new Cancion()
+descargarUsuarios()
 
-facil.añadir("#b9770e")
-medio.añadir("blue")
-dificil.añadir("red")
-
-
-// const cancion = {
-//      añadir: function (cancion, bg){
-//           const box_body = document.querySelector("#box")
-//           const contenido = `
-//                <div style=    'float:left;
-//                               width: calc(33.3% - 1rem);
-//                               height: 20vh;
-//                               min-width: 20rem;
-//                               background-color: ${bg};
-//                               border: 1px solid white'>
+// function imprimirHTML(datos) {
+//      //lista los datos uno x uno
+//      datos.forEach(usuario => {
 //
-//                     <h4 style="color:white"> ${cancion}<h4>
-//                </div>
-//                `
-//           box_body.innerHTML = contenido
+//           //crear etiqueta li
+//           const li = document.createElemet('li');
+//
+//           //coger datos con Destructor
+//           const {user, likes, webformatURL} = usuario;
+//
+//           //insertar datos en html
+//           li.innerHTML = `
+//                          Nombre: ${user} ${likes}
+//                          <img src="${webformaURL}">
+//           `;
+//           document.querySelector("#box_fetch").appendChild(li);
+//
+//      });
+// }
+//
+// const fetch = document.querySelector("#fetch");
+// fetch.addEventListener('click', descargarUsuarios);
+
+
+
+// ............................ Object Constructor
+
+// class Cancion {
+//      constructor(color){
+//           this.color = color;
+//           this.añadir = function(nombre){
+//                const box_body = document.querySelector("#box_constructor");
+//                const contenido = `
+//                                <div style=   'float:left;
+//                                               width: calc(33.3% - 2rem);
+//                                               height: 20vh;
+//                                               min-width: 20rem;
+//                                               background-color: ${this.color};
+//                                               margin: 1rem;'>
+//
+//                                     <h4 style="color:white"> ${nombre} <h4>
+//                                </div>
+//                                `
+//                           box_body.innerHTML += contenido
+//           }
 //      }
 // }
 //
-// cancion.añadir('Volvere', '#b9770e')
+// const facil = new Cancion("green")
+// // const medio = new Cancion()
+// // const dificil = new Cancion()
+//
+//
+// const constructor = document.querySelector("#constructor");
+// constructor.addEventListener('click', añadir);
+// function añadir(){
+//      facil.añadir("cancion fácil");
+// }
